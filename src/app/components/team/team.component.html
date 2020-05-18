@@ -1,0 +1,24 @@
+<button mat-button *ngFor="let pokemon of team; let i = index" (click)="removeFromTeam(i)">
+  <img 
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" 
+    [alt]="pokemon.name"
+    title="Remove"
+  >
+</button>
+<button mat-button (click)="triggerFilter()" *ngIf="team.length < 6">
+    <span class="material-icons">
+        add
+    </span>
+</button>
+<form class="pokemon-form">
+    <mat-form-field class="example-full-width" *ngIf="isTriggered && team.length < 6">
+      <input matInput
+             [matAutocomplete]="auto"
+             [formControl]="myControl">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addToTeam($event.option.value)">
+        <mat-option *ngFor="let pokemon of filteredPokemons | async" [value]="pokemon.name">
+          <span>{{pokemon.name | titlecase}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+</form>

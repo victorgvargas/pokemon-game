@@ -1,0 +1,34 @@
+<app-header></app-header>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="error" *ngIf="error">
+    <span>{{ error }}</span>
+</div>
+<form [formGroup]="loginForm" *ngIf="!isLoading">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+    </mat-form-field>
+    <br>
+    <button 
+        mat-button 
+        type="submit" 
+        [disabled]="!loginForm.valid"
+        (click)="onSubmit('login')"
+    >
+            Login
+    </button> | 
+    <button
+        mat-button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        class="signup"
+        (click)="onSubmit('signup')"
+    >
+        Signup
+    </button>
+</form>

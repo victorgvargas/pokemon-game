@@ -1,0 +1,16 @@
+mat-toolbar {
+    position: relative;
+    background-color: #ef5350;
+}
+
+mat-toolbar span {
+    position: absolute;
+    left: calc(50% - 71px);
+    color: #ffffff;
+}
+
+mat-toolbar button {
+    position: absolute;
+    right: 10px;
+    color: #ffffff;
+}
