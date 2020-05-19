@@ -1,17 +1,24 @@
-<button mat-button *ngFor="let pokemon of team; let i = index" (click)="removeFromTeam(i)">
+<button mat-button class="frame" *ngFor="let pokemon of team; let i = index" (click)="removeFromTeam(i)">
   <img 
     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" 
     [alt]="pokemon.name"
     title="Remove"
   >
 </button>
-<button mat-button (click)="triggerFilter()" *ngIf="team.length < 6">
+<button mat-button class="frame" *ngFor="let pokemon of team2; let i = index" (click)="removeFromTeam(i)">
+  <img 
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" 
+    [alt]="pokemon.name"
+    title="Remove"
+  >
+</button>
+<button mat-button class="frame" (click)="triggerFilter()" *ngIf="team.length < 6 && team2.length < 6">
     <span class="material-icons">
         add
     </span>
 </button>
 <form class="pokemon-form">
-    <mat-form-field class="example-full-width" *ngIf="isTriggered && team.length < 6">
+    <mat-form-field class="example-full-width" *ngIf="isTriggered && team.length < 6 && team2.length < 6">
       <input matInput
              [matAutocomplete]="auto"
              [formControl]="myControl">
@@ -22,3 +29,9 @@
       </mat-autocomplete>
     </mat-form-field>
 </form>
+<div class="ready">
+  <button mat-button [disabled]="!(team.length == 6) && !(team2.length == 6)" (click)="onSetReady()">Ready</button>
+  <span class="done material-icons" *ngIf="isReady">
+    done
+  </span>
+</div>

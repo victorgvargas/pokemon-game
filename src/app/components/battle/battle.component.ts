@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/core/data.service';
 
 @Component({
   selector: 'app-battle',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./battle.component.scss']
 })
 export class BattleComponent implements OnInit {
+  team = [];
+  team2 = [];
+  isLoading : boolean = false;
 
-  constructor() { }
+  constructor(private getData : DataService) { }
 
   ngOnInit(): void {
+    this.fullfillTeams();
+  }
+
+  fullfillTeams(){
+    this.isLoading = true;
+    this.getData.team.subscribe(res => {
+      console.log(res);
+      this.isLoading = false;
+    });
   }
 
 }

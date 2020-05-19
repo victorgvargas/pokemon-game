@@ -1,1 +1,14 @@
-<p>battle works!</p>
+<app-header></app-header>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="wrapper" *ngIf="!isLoading">
+    <div class="blue-side">
+        <img 
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team[0].id }}.png" 
+            [alt]="team[0].name">
+    </div>
+    <div class="red-side">
+        <img 
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team2[0].id }}.png" 
+            [alt]="team2[0].name">
+    </div>
+</div>
